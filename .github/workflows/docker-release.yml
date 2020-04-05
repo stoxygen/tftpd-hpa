@@ -7,7 +7,7 @@ on:
       - published
 
 jobs:
-  release-amd64:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -21,25 +21,7 @@ jobs:
       - name: Run buildx
         run: |
           docker buildx build \
-            --platform linux/amd64 \
-            --push \
-            --tag stoxygen/tftpd-hpa:${GITHUB_REF/refs\/tags\//} \
-            --file Dockerfile .
-  release-armhf:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Docker Buildx
-        id: buildx
-        uses: crazy-max/ghaction-docker-buildx@v1
-        with:
-          version: latest
-      - name: Publish docker-image
-        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login --username stockanalyses --password-stdin
-      - name: Run buildx
-        run: |
-          docker buildx build \
-            --platform linux/arm/v7 \
+            --platform linux/arm/v7,linux/amd64 \
             --push \
             --tag stoxygen/tftpd-hpa:${GITHUB_REF/refs\/tags\//} \
             --file Dockerfile .
