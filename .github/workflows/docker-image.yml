@@ -24,7 +24,7 @@ jobs:
         context: .
         push: false
         tags: stoxygen/tftpd-hpa:latest
-        platforms: linux/am64
+        platforms: linux/amd64
       
   build-armhf:
     runs-on: ubuntu-latest
