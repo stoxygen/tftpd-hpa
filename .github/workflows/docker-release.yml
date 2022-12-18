@@ -29,5 +29,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: stoxygen/tftpd-hpa:${{ env.GITHUB_REF_NAME }}
+          tags: stoxygen/tftpd-hpa:${GITHUB_REF_NAME}
           platforms: linux/arm/v7,linux/amd64,linux/arm/v5
