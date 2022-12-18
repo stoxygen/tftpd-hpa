@@ -24,7 +24,9 @@ jobs:
           username: stockanalyses
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - run: echo "GITHUB_REF_NAME: ${GITHUB_REF_NAME}"
+      - name: Test
+        run: |
+          echo "GITHUB_REF_NAME: ${GITHUB_REF_NAME}"
 
       - name: Build
         uses: docker/build-push-action@v3
