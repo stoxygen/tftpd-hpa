@@ -24,10 +24,12 @@ jobs:
           username: stockanalyses
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
+      - run: echo "GITHUB_REF_NAME: ${GITHUB_REF_NAME}"
+
       - name: Build
         uses: docker/build-push-action@v3
         with:
           context: .
           push: true
-          tags: stoxygen/tftpd-hpa:$GITHUB_REF_NAME
+          tags: "stoxygen/tftpd-hpa:${GITHUB_REF_NAME}"
           platforms: linux/arm/v7,linux/amd64,linux/arm/v5
